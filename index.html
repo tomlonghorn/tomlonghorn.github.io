@@ -11,28 +11,27 @@
 		<div class="scanline"></div>
 			<script>
 				files = {
-					"info.txt": "Hello there! I love science and computers.\n If you want to see my projects then check out my <a href='https://github.com/'>Github</a> or my <a href='https://twitter.com/'>Twitter</a>.",
-					"friends.txt": "Nobody - <a href='https://'>https://a</a>",
+					"info.txt": "Hey there, I am Tom Longhorn.\n I am just a person who likes technology, especially Microsoft Windows operating system.",
 					"blog.txt":" - Work In Progress - "
 				}
 				$('#crt').terminal({
-				    ls: function() {
+				    dir: function() {
 				    	s_return = ""
 				    	for (file of Object.keys(files)) {
 				    		s_return += file + "\n"
 				    	}
 				        this.echo(s_return)
 				    },
-				    cat: function(file) {
+				    start: function(file) {
 				    	s_return = files[file]
 				    	if(s_return) {
 				    		this.echo(s_return, {raw:true})
 				    	} else {
-				    		this.echo(`'${file}' wasn't found!`)
+				    		this.echo(`'${file}' is not recognized as an internal or external command, operable program or batch file.`)
 				    	}
 				    }
 				}, {
-				    greetings: "Welcome! Use 'ls' to see files and 'cat' to read them."
+				    greetings: "Welcome! Use 'dir' to see files and 'start' to read them."
 				});
 			</script>
 		</div>

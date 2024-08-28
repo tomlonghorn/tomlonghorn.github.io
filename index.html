@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="jquery-3.3.1.min.js"></script>
+		<html lang="en">
+		<title>Tom Longhorn</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr"<meta data-n-head="ssr" name="format-detection" content="telephone=no"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Tom Longhorn's Website"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://tomlonghorn.github.io"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="Tom Longhorn's Website">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Tom Longhorn">
+		<meta name="description" content="Tom Longhorn's Website">
+		<meta name="keywords" content="bio, longhorn">
+		<meta http-equiv="x-ua-compatible" content="ie=edge; charset=UTF-8">
+		<script src="jquery.min.js"></script>
 		<script src="jquery.terminal.min.js"></script>
 		<link rel="stylesheet" href="jquery.terminal.min.css"/>
 		<link rel="stylesheet" href="main.css"/>
@@ -11,7 +18,7 @@
 			<script>
 				files = {
 					"info.txt": "Hey there, I am Tom Longhorn.\n I am just a person who likes technology, especially Microsoft Windows operating system.",
-					"blog.txt":" - Work In Progress - "
+					"blog.txt":" - Nothing here yet - "
 				}
 				$('#crt').terminal({
 				    dir: function() {
@@ -19,7 +26,65 @@
 				    	for (file of Object.keys(files)) {
 				    		s_return += file + "\n"
 				    	}
-				        this.echo(s_return)
+				        this.echo(' Volume in drive C is Local Disk\n Volume Serial Number is 0845-EAA2\n\n Directory of C:\\\n\n' + s_return + '\n          2 File(s)\n          0 Dir(s)')
+				    },
+					DIR: function() {
+				    	s_return = ""
+				    	for (file of Object.keys(files)) {
+				    		s_return += file + "\n"
+				    	}
+				        this.echo(' Volume in drive C is Local Disk\n Volume Serial Number is 0845-EAA2\n\n Directory of C:\\\n\n' + s_return + '\n          2 File(s)\n          0 Dir(s)')
+				    },
+					
+					cls: function() {
+				    	this.clear();
+				    },
+					CLS: function() {
+				    	this.clear();
+				    },
+					help: function() {
+				    	this.echo(`CLS            Clears the screen.\nDATE           Displays or sets the date.\nDIR            Displays a list of files and subdirectories in a directory.\nHELP           Provides Help information for Windows commands.\nSTART          Starts a separate window to run a specified program or command.\nTIME           Displays or sets the system time.\n\nFor more information on tools see the command-line reference in the online help.`)
+				    },
+					HELP: function() {
+				    	this.echo(`CLS            Clears the screen.\nDATE           Displays or sets the date.\nDIR            Displays a list of files and subdirectories in a directory.\nHELP           Provides Help information for Windows commands.\nSTART          Starts a separate window to run a specified program or command.\nTIME           Displays or sets the system time.\n\nFor more information on tools see the command-line reference in the online help.`)
+				    },
+					date: function() {
+					s_return = new Date().toISOString().substr(0, 10)
+				    	this.echo(`The current date is: ` + s_return)
+				    },
+					DATE: function() {
+					s_return = new Date().toISOString().substr(0, 10)
+				    	this.echo(`The current date is: ` + s_return)
+				    },
+					time: function() {
+					var d = new Date();
+					var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+				    	this.echo(`The current time is: ` + time)
+				    },
+					TIME: function() {
+					var d = new Date();
+					var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+				    	this.echo(`The current time is: ` + time)
+				    },
+					reload: function() {
+					window.location.reload();
+				    },
+					RELOAD: function() {
+					window.location.reload();
+				    },
+					refresh: function() {
+					window.location.reload();
+				    },
+					REFRESH: function() {
+					window.location.reload();
+				    },
+					START: function(file) {
+					s_return = files[file]
+				    	if(s_return) {
+				    		this.echo(s_return, {raw:true})
+				    	} else {
+				    		this.echo(`'${file}' is not recognized as an internal or external command, operable program or batch file.`)
+				    	}
 				    },
 				    start: function(file) {
 				    	s_return = files[file]
@@ -28,9 +93,10 @@
 				    	} else {
 				    		this.echo(`'${file}' is not recognized as an internal or external command, operable program or batch file.`)
 				    	}
-				    }
+				    },
+					
 				}, {
-				    greetings: "Tom Longhorn [Version 6.0.4015]\n<C> Copyright 2024 Tom Longhorn\n\nWelcome! Use 'dir' to see files and 'start' to read them."
+				    greetings: "Tom Longhorn [Version 6.0.4015]\n<C> Copyright 2024 Tom Longhorn\n\nWelcome! Use 'dir' to see files and 'start' to read them. To view all commands, type 'help'."
 				});
 			</script>
 		</div>
